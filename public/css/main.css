@@ -1,0 +1,17 @@
+body {
+	background-color: #fafafa;
+}
+
+#activities-panel {
+	min-height: calc(100vh - 20vh);
+	max-height: calc(100vh - 20vh);
+	overflow-y: scroll;
+}
+
+#activitySearchMember {
+	min-width: 52.5vh;
+}
+
+#checked-in-panel {
+	margin-top: 2%!important;
+}
