@@ -17,9 +17,11 @@ Route::resource('/purchases','PurchaseController');
 Route::resource('/subscriptions','SubscriptionController');
 Route::resource('/installments','InstallmentController');
 
+// target routes
 Route::post('/addTarget','TargetController@addTarget')->name('addTarget');
 Route::get('/expireTarget','TargetController@expireTarget');
 
+// turn routes
 Route::get('/checkIfHasTurn','TurnController@checkIfHasTurn');
 Route::post('/deactivateCurrentTurn','TurnController@deactivateCurrentTurn')->name('deactivateCurrentTurn');
 
