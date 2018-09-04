@@ -6,6 +6,7 @@ function fetchUsers(){
     }));
 
     $.get('/getCheckInUsers', {}, function(data){
+        // console.log(data); return false;
         $.each(data, function(i, item){
             $('#activitySearchMember').append($('<option>', {
                 value: item.id,

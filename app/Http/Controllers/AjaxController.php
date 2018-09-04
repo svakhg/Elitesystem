@@ -92,6 +92,8 @@ class AjaxController extends Controller
 
     public function getCheckInUsers()
     {
+        $time = (int)date('H');
+
         $members = [];
 
         $all_members = Member::all();
@@ -103,7 +105,25 @@ class AjaxController extends Controller
             {
                 if($member->subscription->status == 1 && $member->subscription->deleted == 0)
                 {
-                    array_push($members,$member);
+                    //shto ne array sipas orarit te abonimit
+                    if($member->subscription->package->time == 1) 
+                    {
+                        if($time < 16)
+                        {
+                            array_push($members,$member);
+                        } 
+                    } 
+                    else if ($member->subscription->package->time == 2) 
+                    {
+                        if($time >= 16) 
+                        {
+                            array_push($members, $member);
+                        }
+                    }
+                    else if ($member->subscription->package->time == 3)
+                    {
+                        array_push($members, $member);
+                    }
                 }     
             }
         }
