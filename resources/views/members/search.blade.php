@@ -5,7 +5,7 @@
         
         <h3 class="text-center">Rezultatet e Kërkimit</h3>
 
-        <div class="row">
+        <div class="row jumbotron">
 
             @foreach($members as $member)
                 <div class="col-sm-6 col-md-3">

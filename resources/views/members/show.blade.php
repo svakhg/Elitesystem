@@ -72,6 +72,13 @@
 					    		@endforeach
 					    	</table>
 					    	<strong>Borxhi: {{ $total }}</strong>
+							@if($total > 0)
+								@if($member->unpayed_purchases)
+									<button class="btn btn-success btn-sm pull-right" id="payDebtsBtn" data-user="{{ $member->id }}" data-total="{{ $total }}">
+										Paguaj Borxhet
+									</button>
+								@endif
+							@endif
 					    </div>
 
 					  </div>
@@ -141,5 +148,18 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		$('#payDebtsBtn').on('click',function(e){
+    		var user_id = $(this).data('user');
+			var total = $(this).data('total');
 
+			$.post('/payDebt/'+user_id, {
+				'_token': $('input[name=_token]').val(),
+				'total': total
+			}, function(data) {
+				location.reload();
+			});
+		});
+	</script>
 @endsection

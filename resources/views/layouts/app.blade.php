@@ -23,7 +23,7 @@
     
     <!-- Sweet Alert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    {{-- <script src="{{ asset('js/sweetalert.min.js') }}"></script> --}}
+    
     <!-- Main Js -->
     @if(!auth()->guest())
         <script src="{{ asset('js/main.js') }}"></script>

@@ -186,4 +186,25 @@ class AjaxController extends Controller
 
         return view('members.search', compact('members'));
     }
+
+    public function payDebt($id, Request $request) 
+    {
+        $member = Member::find($id);
+        $total = $request->total;
+
+        // shto ne totali i turnit
+        $turn = Turn::where('active','1')->first();
+        $turn->total = $turn->total + $total;
+        $turn->save();
+
+        if($member->unpayed_purchases) 
+        {
+            foreach($member->unpayed_purchases as $debt)
+            {
+                $debt->status = 'paguar';
+                $debt->save();
+            }
+        }
+
+    }
 }
