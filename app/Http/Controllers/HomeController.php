@@ -22,7 +22,8 @@ class HomeController extends Controller
     {
         if(auth()->user()->is_bar()) return redirect('/bar');
 
-        $purchases = Purchase::orderBy('created_at','DESC')->take(10)->get();
+        $payed_purchases = Purchase::orderBy('created_at','DESC')->where('status','paguar')->take(10)->get();
+        $unpayed_purchases = Purchase::orderBy('created_at','DESC')->where('status','papaguar')->take(10)->get();
         $members_nr = Member::all()->count();
         $subscriptions_nr = Subscription::where('status','1')->count();
         $packages_nr = Package::all()->count();
@@ -36,7 +37,8 @@ class HomeController extends Controller
         $percentage_accomplished = $p * 100;
 
         return view('home', compact([
-            'purchases',
+            'payed_purchases',
+            'unpayed_purchases',
             'members_nr',
             'subscriptions_nr',
             'packages_nr',

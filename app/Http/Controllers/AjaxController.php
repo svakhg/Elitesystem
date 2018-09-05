@@ -84,7 +84,7 @@ class AjaxController extends Controller
             $debt += $unpayed->price;
         }
         
-        if($debt > 200) 
+        if($debt >= 200) 
             return 1;
         else 
             return 0;    

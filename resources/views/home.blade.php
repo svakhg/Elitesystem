@@ -75,6 +75,7 @@
                                 <tr>
                                     <th>Antari</th>
                                     <th>Checked In</th>
+                                    <th>Profili</th>
                                     <th>Aksioni</th>
                                 </tr>
                                 @foreach($activities as $activity)
@@ -85,9 +86,12 @@
                                         </td>
                                         <td>{{ $activity->updated_at->diffForHumans() }}</td>
                                         <td>
+                                            <a href="{{ route('members.show',$activity->member->id) }}" class="btn btn-sm btn-warning">Shiko</a>
+                                        </td>
+                                        <td>
                                             <form method="POST">
                                                 {{ csrf_field() }}
-                                                <button class="btn btn-warning btn-sm checkOutBtn"  data-id="{{ $activity->id }}">Check Out</button>
+                                                <button class="btn btn-danger btn-sm checkOutBtn"  data-id="{{ $activity->id }}">Check Out</button>
                                             </form>
                                         </td>
                                     </tr>   
@@ -104,38 +108,92 @@
                         <strong>Blerjet e fundit</strong>
                     </div>
                     <div class="panel-body">
-                        <table class="table table-responsive table-condensed">
-                            <tr>
-                                <th>Konsumatori</th>
-                                <th>Produkti</th>
-                                <th>Sasia</th>
-                                <th>Cmimi</th>
-                                <th>Statusi</th>
-                            </tr>
-                            @foreach($purchases as $purchase)
-                                <tr>
-                                    <td>
-                                        @if($purchase->buyer) 
-                                            {{ ucfirst($purchase->buyer->first_name) }}
-                                            {{ ucfirst($purchase->buyer->last_name) }}
-                                        @else
-                                            Deleted
-                                        @endif    
-                                    </td>
-                                    <td>
-                                        @if($purchase->product)
-                                            {{ $purchase->product->name }}
-                                        @else
-                                            Deleted    
-                                        @endif
-                                    </td>
-                                    <td>{{ $purchase->quantity }}</td>
-                                    <td>{{ $purchase->price }}</td>
-                                    <td>{{ $purchase->status }}</td>
-                                </tr>
-                            @endforeach
-                        </table>
-                        <a class="btn btn-primary btn-group btn-block" href="{{ route('purchases.index') }}">Shiko te gjitha</a>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation">
+                                <a href="#payed_p" aria-controls="payed_p" role="tab" data-toggle="tab">Të Paguara</a>
+                            </li>
+                            <li role="presentation" class="active">
+						    	<a href="#unpayed_p" aria-controls="unpayed_p" role="tab" data-toggle="tab">Të Mbartura</a>
+						    </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane" id="payed_p">
+                                <br>
+                                <table class="table table-responsive table-condensed">
+                                    <tr>
+                                        <th>Konsumatori</th>
+                                        <th>Produkti</th>
+                                        <th>Sasia</th>
+                                        <th>Cmimi</th>
+                                    </tr>
+                                    @foreach($payed_purchases as $purchase)
+                                        <tr>
+                                            <td>
+                                                @if($purchase->buyer) 
+                                                    {{ ucfirst($purchase->buyer->first_name) }}
+                                                    {{ ucfirst($purchase->buyer->last_name) }}
+                                                @else
+                                                    Deleted
+                                                @endif    
+                                            </td>
+                                            <td>
+                                                @if($purchase->product)
+                                                    {{ $purchase->product->name }}
+                                                @else
+                                                    Deleted    
+                                                @endif
+                                            </td>
+                                            <td>{{ $purchase->quantity }}</td>
+                                            <td>{{ $purchase->price }}</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                                <a class="btn btn-primary btn-group btn-block" href="{{ route('purchases.index') }}">Shiko te gjitha</a>
+                            </div><!-- ./tab-panel  -->
+
+                            <div role="tabpanel" class="tab-pane active" id="unpayed_p">
+                                <br>
+                                <table class="table table-responsive table-condensed">
+                                    <tr>
+                                        <th>Konsumatori</th>
+                                        <th>Produkti</th>
+                                        <th>Sasia</th>
+                                        <th>Cmimi</th>
+                                        <th>Aksioni</th>
+                                    </tr>
+                                    @foreach($unpayed_purchases as $purchase)
+                                        <tr>
+                                            <td>
+                                                @if($purchase->buyer) 
+                                                    {{ ucfirst($purchase->buyer->first_name) }}
+                                                    {{ ucfirst($purchase->buyer->last_name) }}
+                                                @else
+                                                    Deleted
+                                                @endif    
+                                            </td>
+                                            <td>
+                                                @if($purchase->product)
+                                                    {{ $purchase->product->name }}
+                                                @else
+                                                    Deleted    
+                                                @endif
+                                            </td>
+                                            <td>{{ $purchase->quantity }}</td>
+                                            <td>{{ $purchase->price }}</td>
+                                            <td>
+                                                <form method="POST" action="{{ route('purchases.update',$purchase->id) }}">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PUT') }}
+                                                    <input type="submit" class="btn btn-sm btn-success" value="Paguaj">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                                <a class="btn btn-primary btn-group btn-block" href="{{ route('purchases.index') }}">Shiko te gjitha</a>
+                            </div><!-- ./tab-panel -->
+                        </div><!-- ./tab-content -->
+                        
                     </div>
                 </div><!-- ./panel -->
             </div>

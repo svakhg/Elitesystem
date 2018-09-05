@@ -16,6 +16,7 @@
 							<th>Sasia</th>
 							<th>Cmimi</th>
 							<th>Statusi</th>
+							<th>Aksioni</th>
 							<th>Blerja</th>
 							<th>Anulo</th>
 						</tr>
@@ -33,6 +34,17 @@
 								<td>{{ $purchase->quantity }}</td>
 								<td>{{ $purchase->price }}</td>
 								<td>{{ $purchase->status }}</td>
+								<td>
+									@if($purchase->status == 'papaguar')
+										<form method="POST" action="{{ route('purchases.update',$purchase->id) }}">
+											{{ csrf_field() }}
+											{{ method_field('PUT') }}
+											<input type="submit" class="btn btn-sm btn-success" value="Paguaj">
+										</form>
+									@else
+										<button class="btn btn-success btn-sm" disabled>Paguaj</button>
+									@endif
+								</td>
 								<td>{{ $purchase->created_at->diffForHumans() }}</td>
 								<td>
 									<form method="POST" action="{{ route('purchases.destroy',$purchase->id) }}">

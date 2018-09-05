@@ -21,7 +21,7 @@
 						    	<a href="#payed" aria-controls="payed" role="tab" data-toggle="tab">Të Paguara</a>
 						    </li>
 						    <li role="presentation">
-						    	<a href="#unpayed" aria-controls="unpayed" role="tab" data-toggle="tab">Të Papaguara</a>
+						    	<a href="#unpayed" aria-controls="unpayed" role="tab" data-toggle="tab">Të Mbartura</a>
 						    </li>
 					  	</ul>
 
@@ -48,6 +48,7 @@
 					    		@endforeach
 					    	</table>
 					    </div>	
+
 
 					    <div role="tabpanel" class="tab-pane" id="unpayed">
 					    	<br>

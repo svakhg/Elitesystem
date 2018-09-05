@@ -99,7 +99,16 @@ class PurchaseController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $purchase = Purchase::find($id);
+        $purchase->status = 'paguar';
+        $purchase->save();
+
+        // shto ne totali i turnit
+        $turn = Turn::where('active','1')->first();
+        $turn->total = $turn->total + $purchase->price;
+        $turn->save();
+
+        return back()->with('success','Blerja e mbartur u pagua');
     }
 
     public function destroy($id)
