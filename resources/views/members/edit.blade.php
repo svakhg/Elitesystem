@@ -37,6 +37,38 @@
 							<label>Nr.Tel</label>
 							<input type="number" name="phone" class="form-control" value="{{ $member->phone }}">
 						</div>
+						@if($member->subscription)
+							<div class="form-group">
+								<label>Paketa</label>
+								<select class="form-control" name="package_id">
+									@foreach($packages as $package)
+										<option value="{{ $package->id }}" @if($member->subscription->package_id == $package->id) selected @endif>
+												{{ $package->service->name }}
+												{{ $package->cycle->name }}
+												@if($package->time == 1)
+													Paradite
+												@endif
+
+												@if($package->time == 1)
+													Mbasdite
+												@endif
+
+												@if($package->time == 1)
+													Paradite \ Mbasdite
+												@endif
+
+												{{ $package->all_sessions }} (seanca)
+
+												{{ $package->price }} (lek)
+										</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Date e Filleses</label>
+								<input type="date" class="form-control" name="starts_at" value="{{ $member->subscription->starts_at }}">
+							</div>
+						@endif
 						<input type="submit" class="btn btn-primary">
 					</form>
 				</div>
