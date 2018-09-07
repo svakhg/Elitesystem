@@ -4,13 +4,13 @@
 
 	<div class="container-fluid">
 		{{-- Produktet --}}
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<strong>Produktet</strong>
-					@if(auth()->user()->is_superuser())
+					{{-- @if(auth()->user()->is_superuser())
 						<a href="#" class="pull-right btn btn-success btn-sm" style="margin-top:-3.5px;" data-toggle="modal" data-target="#add-product-modal">Shto Produkt</a>
-					@endif
+					@endif --}}
 				</div>
 				<div class="panel-body">
 					<table class="table table-condensed table-resposnive">
@@ -18,17 +18,17 @@
 							<th>Produkti</th>
 							<th>Gjendje</th>
 							<th>Cmimi</th>
-							@if(auth()->user()->is_superuser())
+							{{-- @if(auth()->user()->is_superuser())
 								<th>Redakto</th>
 								<th>Fshi</th>
-							@endif
+							@endif --}}
 						</tr>
 						@foreach($products as $product)
 							<tr>
 								<td>{{ ucfirst($product->name) }}</td>
 								<td>{{ $product->actual }}</td>
 								<td>{{ $product->price }}</td>
-								@if(auth()->user()->is_superuser())
+								{{-- @if(auth()->user()->is_superuser())
 									<td>
 										<a href="{{ route('bar.edit',$product->id) }}" class="btn btn-sm btn-info">Redakto</a>
 									</td>
@@ -39,7 +39,7 @@
 											<input type="submit" class="btn btn-sm btn-danger" value="Fshi">
 										</form>
 									</td>
-								@endif
+								@endif --}}
 							</tr>
 						@endforeach
 					</table>
@@ -48,7 +48,7 @@
 		</div>
 
 		{{-- Shto Blerje --}}
-		<div class="col-md-4">
+		<div class="col-md-5">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<strong>Shto Blerje</strong>
