@@ -9,6 +9,7 @@ use App\Purchase;
 use App\Package;
 use App\Activity;
 use App\Target;
+use App\User;
 
 use DateTime;
 use DateInterval;
@@ -67,9 +68,13 @@ class MemberController extends Controller
         $member->save();
 
         // shto ne targeti mujor
-        $target = Target::where('active','1')->first();
-        $target->accomplished = $target->accomplished + 1;
-        $target->save();
+        $current_user = auth()->user();
+        
+        if($current_user->permissions == 'recepsion')
+        {
+            $current_user->target->accomplished +=1;
+            $current_user->target->save();
+        }
 
         return redirect()->route('members.index')->with('success','Antari i ri u krijua');
     }

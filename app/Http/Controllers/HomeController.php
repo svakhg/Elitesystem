@@ -28,13 +28,16 @@ class HomeController extends Controller
         $subscriptions_nr = Subscription::where('status','1')->count();
         $packages_nr = Package::all()->count();
         $activities = Activity::where('active','1')->get();
-        $target = Target::where('active','1')->first();
+        $targets = Target::where('active','1')->get();
         $active_turn = Turn::where('active','1')->first();
 
-        $x = (int)$target->target;
-        $y = (int)$target->accomplished;
-        $p = $y/$x;
-        $percentage_accomplished = $p * 100;
+        // foreach($targets as $target)
+        // {
+        //     $x = (int)$target->target;
+        //     $y = (int)$target->accomplished;
+        //     $p = $y/$x;
+        //     $percentage_accomplished = $p * 100;
+        // }
 
         return view('home', compact([
             'payed_purchases',
@@ -43,8 +46,7 @@ class HomeController extends Controller
             'subscriptions_nr',
             'packages_nr',
             'activities',
-            'target',
-            'percentage_accomplished',
+            'targets',
             'active_turn'
         ]));
     }

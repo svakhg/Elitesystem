@@ -14,12 +14,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet">
-    {{-- <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet"> --}}
+    <link rel="{{ asset('css/datepicker.min.css') }}" rel="stylesheet">
 
-    {{-- Scripts --}}
+    <!-- Scripts -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <!-- Zebra Datepicker -->
+    <script src="{{ asset('js/datepicker.min.js') }}"></script> 
     
     <!-- Sweet Alert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

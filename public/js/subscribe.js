@@ -19,8 +19,6 @@ $('#member_id').on('input', function(){
 	 });
 });
 
-$('#datepicker').datepicker();
-
 /***********************/
 /* VALIDATE DATEPICKER */
 /***********************/

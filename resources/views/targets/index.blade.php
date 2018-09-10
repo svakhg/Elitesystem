@@ -1,16 +1,25 @@
-                @if($target)
+                @if(count($targets) > 0)
+                @foreach($targets as $target)
                     <div class="well text-center">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <b><span>100 Antarë të rrinj</span></b>
+                                <b><span>{{ $target->user->first_name }}</span></b>
                             </div>
                             <div class="panel-body">
+                                <?php 
+                                    $x = (int)$target->target;
+                                    $y = (int)$target->accomplished;
+                                    $p = $y/$x;
+                                    $percentage_accomplished = $p * 100;
+                                ?>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" aria-valuenow="{{ $percentage_accomplished }}" aria-valuemin="0" aria-valuemax="100" style="width: {{$percentage_accomplished}}%;"></div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div><!-- ./well -->
+                    @endforeach
                 @else 
                     @if(auth()->user()->is_superuser())
                         <div class="well">

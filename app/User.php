@@ -63,4 +63,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Turn');
     }
 
+    public function target()
+    {
+        if($this->is_recepsion())
+        {
+            return $this->hasOne('App\Target')->where('active','1');
+        }
+    }
 }
