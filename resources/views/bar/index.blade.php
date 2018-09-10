@@ -23,7 +23,7 @@
 								<th>Fshi</th>
 							@endif --}}
 						</tr>
-						@foreach($products as $product)
+						@foreach($products_array as $product)
 							<tr>
 								<td>{{ ucfirst($product->name) }}</td>
 								<td>{{ $product->actual }}</td>
@@ -185,7 +185,11 @@
 										Deleted
 									@endif	
 								</td>
-								<td>{{ $purchase->product->name }}</td>
+								@if($purchase->product)
+									<td>{{ $purchase->product->name }}</td>
+								@else 
+									<td>Deleted</td>
+								@endif
 								<td>{{ $purchase->quantity }}</td>
 								<td>{{ $purchase->price }}</td>
 								<td>{{ $purchase->status }}</td>

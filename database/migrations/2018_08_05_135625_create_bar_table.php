@@ -17,8 +17,8 @@ class CreateBarTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('price');
-            $table->integer('init');
-            $table->integer('actual');
+            $table->integer('init')->nullable();
+            $table->integer('actual')->nullable();
             $table->integer('countable')->default(1);
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class CreateBarTable extends Migration
      */
     public function down()
     {
-        Schema::dropTable('bar');
+        Schema::drop('bar');
     }
 }

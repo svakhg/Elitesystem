@@ -28,6 +28,6 @@ class CreateTurnsTable extends Migration
      */
     public function down()
     {
-        Schema::dropTable('turns');
+        Schema::drop('turns');
     }
 }

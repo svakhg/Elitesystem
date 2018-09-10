@@ -25,6 +25,10 @@ Route::get('/expireTarget','TargetController@expireTarget');
 Route::get('/checkIfHasTurn','TurnController@checkIfHasTurn');
 Route::post('/deactivateCurrentTurn','TurnController@deactivateCurrentTurn')->name('deactivateCurrentTurn');
 
+// inventory routes
+Route::get('/inventory','InventoryController@index')->name('inventory.index');
+Route::post('/addSuply', 'InventoryController@addSuply')->name('addSuply');
+
 /**** AJAX ROUTES ****/
 Route::post('/getProductPriceById/{id}','AjaxController@getProdouctPriceById');
 Route::post('/getProductQtyById/{id}','AjaxController@getProductQtyById');

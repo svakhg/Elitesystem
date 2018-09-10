@@ -25,6 +25,6 @@ class AddUserIdToTargetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropColumnIfExists('user_id');
+        Schema::dropColumn('user_id');
     }
 }

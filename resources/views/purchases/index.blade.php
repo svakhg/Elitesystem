@@ -30,7 +30,11 @@
 										Deleted
 									@endif	
 								</td>
-								<td>{{ $purchase->product->name }}</td>
+								@if($purchase->product)
+									<td>{{ $purchase->product->name }}</td>
+								@else 
+									<td>Deleted</td>
+								@endif
 								<td>{{ $purchase->quantity }}</td>
 								<td>{{ $purchase->price }}</td>
 								<td>{{ $purchase->status }}</td>

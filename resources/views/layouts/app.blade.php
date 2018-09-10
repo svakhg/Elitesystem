@@ -82,6 +82,7 @@
                                 <li><a href="{{ route('bar.index') }}">Bar</a></li>
                                 <li><a href="{{ route('subscriptions.index') }}">Abonimet</a></li>
                                 <li><a href="{{ route('installments.index') }}">Këstet</a></li>
+                                <li><a href="{{ route('inventory.index') }}">Inventari</a></li>
                             @endif
 
                             @if(auth()->user()->is_recepsion())

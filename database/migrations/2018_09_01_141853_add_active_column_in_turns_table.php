@@ -25,6 +25,6 @@ class AddActiveColumnInTurnsTable extends Migration
      */
     public function down()
     {
-        Schema::dropColumnIfExists('active');
+        Schema::dropColumn('active');
     }
 }

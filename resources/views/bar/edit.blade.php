@@ -30,7 +30,7 @@
 			        		<select name="countable" class="form-control">
 			        			<option></option>
 			        			<option value="1" @if($product->countable == '1') selected @endif>Po</option>
-			        			<option value="2" @if($product->countable == '1') selected @endif>Jo</option>
+			        			<option value="0" @if($product->countable == '0') selected @endif>Jo</option>
 			        		</select>
 			        	</div>
 			        	<input type="submit" class="btn btn-primary">

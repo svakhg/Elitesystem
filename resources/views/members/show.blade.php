@@ -39,7 +39,11 @@
 					    		@foreach($member->payed_purchases as $purchase)
 									@if($purchase)
 										<tr>
-											<td>{{ $purchase->product->name }}</td>
+											@if($purchase->product)
+												<td>{{ $purchase->product->name }}</td>
+											@else 
+												<td>Deleted</td>
+											@endif
 											<td>{{ $purchase->quantity }}</td>
 											<td>{{ $purchase->price }}</td>
 											<td>{{ $purchase->created_at->diffForHumans() }}</td>
@@ -64,7 +68,11 @@
 									@if($purchase)
 										<?php $total += $purchase->price;  ?>
 										<tr>
-											<td>{{ $purchase->product->name }}</td>
+											@if($purchase->product)
+												<td>{{ $purchase->product->name }}</td>
+											@else 
+												<td>Deleted</td>
+											@endif
 											<td>{{ $purchase->quantity }}</td>
 											<td>{{ $purchase->price }}</td>
 											<td>{{ $purchase->created_at->diffForHumans() }}</td>

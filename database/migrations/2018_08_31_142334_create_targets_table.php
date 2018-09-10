@@ -29,6 +29,6 @@ class CreateTargetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropTable('targets');
+        Schema::drop('targets');
     }
 }

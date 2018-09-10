@@ -32,6 +32,6 @@ class CreateMembersTable extends Migration
      */
     public function down()
     {
-        Schema::dropTable('members');
+        Schema::drop('members');
     }
 }

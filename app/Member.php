@@ -30,4 +30,9 @@ class Member extends Model
         else 
             return false;
     }
+
+    public function towel()
+    {
+        return $this->hasOne('App\Towel');
+    }
 }

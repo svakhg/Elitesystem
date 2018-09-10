@@ -1,6 +1,6 @@
                 @if(count($targets) > 0)
-                @foreach($targets as $target)
                     <div class="well text-center">
+                    @foreach($targets as $target)
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <b><span>{{ $target->user->first_name }}</span></b>
@@ -18,8 +18,8 @@
                                 
                             </div>
                         </div>
+                        @endforeach
                     </div><!-- ./well -->
-                    @endforeach
                 @else 
                     @if(auth()->user()->is_superuser())
                         <div class="well">

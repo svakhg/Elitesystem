@@ -34,6 +34,6 @@ class CreateSubscriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropTable('subscriptions');
+        Schema::drop('subscriptions');
     }
 }

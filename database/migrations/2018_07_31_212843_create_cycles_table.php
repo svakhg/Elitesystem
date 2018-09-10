@@ -27,6 +27,6 @@ class CreateCyclesTable extends Migration
      */
     public function down()
     {
-        Schema::dropTable('cycles');
+        Schema::drop('cycles');
     }
 }

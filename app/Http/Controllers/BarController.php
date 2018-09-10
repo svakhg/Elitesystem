@@ -19,12 +19,29 @@ class BarController extends Controller
 
     public function index()
     {
-        $products = Bar::where('actual','!=',0)->get();
+        $products = [];
+        $products_array = Bar::all();
+
+        foreach($products_array as $product)   
+        {
+            if($product->countable == 0) 
+            {
+                array_push($products,$product);
+            } 
+            else 
+            {
+                if($product->actual >= 1) 
+                {
+                    array_push($products, $product);
+                }
+            }
+        }     
+
         $members = Member::all();
         $users = User::all();
         $purchases = Purchase::orderBy('created_at','DESC')->take(15)->get();
 
-        return view('bar.index', compact(['products','members','users','purchases']));
+        return view('bar.index', compact(['products','products_array','members','users','purchases']));
     }
 
     public function store(Request $request)
@@ -36,7 +53,6 @@ class BarController extends Controller
 
         $this->validate($request, [
             'name' => 'required|min:3',
-            'qty' => 'required',
             'price' => 'required',
             'countable' => 'required'
         ]);
@@ -44,8 +60,6 @@ class BarController extends Controller
         $product = new Bar();
         $product->name = $request->input('name');
         $product->price = $request->input('price');
-        $product->init = $request->input('qty');
-        $product->actual = $request->input('qty');
         $product->countable = $request->input('countable');
         $product->save();
 

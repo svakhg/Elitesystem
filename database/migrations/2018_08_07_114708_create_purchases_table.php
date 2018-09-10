@@ -32,6 +32,6 @@ class CreatePurchasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropTable('purchases');
+        Schema::drop('purchases');
     }
 }
