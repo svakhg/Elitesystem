@@ -28,6 +28,7 @@ Route::post('/deactivateCurrentTurn','TurnController@deactivateCurrentTurn')->na
 // inventory routes
 Route::get('/inventory','InventoryController@index')->name('inventory.index');
 Route::post('/addSuply', 'InventoryController@addSuply')->name('addSuply');
+Route::delete('/deleteSupply/{id}','InventoryController@deleteSupply')->name('deleteSupply');
 
 /**** AJAX ROUTES ****/
 Route::post('/getProductPriceById/{id}','AjaxController@getProdouctPriceById');

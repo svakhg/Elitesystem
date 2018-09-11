@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bar;
+use App\Supply;
 
 class InventoryController extends Controller
 {
@@ -17,10 +18,12 @@ class InventoryController extends Controller
     {
         $products = Bar::all();
         $countable_products = Bar::where('countable','1')->get();
+        $supplies = Supply::all();
 
         return view('inventory.index', compact([
             'products',
-            'countable_products'
+            'countable_products',
+            'supplies'
         ]));
     }
 
@@ -32,10 +35,25 @@ class InventoryController extends Controller
         ]);
 
         $product = Bar::find($request->input('product_id'));
-        $product->init = $request->input('quantity');
-        $product->actual = $request->input('quantity');
+        $product->init += $request->input('quantity');
+        $product->actual += $request->input('quantity');
         $product->save();
 
+        // shto ne tabela e furnizimeve
+        $supply = new Supply();
+        $supply->product = $product->name;
+        $supply->quantity = $request->input('quantity');
+        $supply->waste = $request->input('waste');
+        $supply->save();
+
         return back()->with('success','Furnizimi u krye');
+    }
+
+    public function deleteSupply($id)
+    {
+        $supply = Supply::find($id);
+        $supply->delete();
+
+        return back()->with('success','Furnizimi u fshi');
     }
 }

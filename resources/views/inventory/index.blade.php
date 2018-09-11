@@ -117,12 +117,54 @@
                                 <label>Sasia</label>
                                 <input type="number" name="quantity" class="form-control">
                             </div>
+                            <div class="form-group">
+                                <label>Kosto (lek)</label>
+                                <input type="number" name="waste" class="form-control">
+                            </div>
                             <input type="submit" class="btn btn-primary">
                         </form>
                     </div><!-- ./panel-body -->
                 </div><!-- ./panel -->
             </div><!-- ./col-md-4 -->
         
+        </div><!-- ./row -->
+
+        <div class="row">
+            <div class="col-md-4"></div><!-- ./col-md-4 -->
+            <div class="col-md-4">
+                
+            </div><!-- ./col-md-4 -->
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Furnizimet</strong>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-condensed table-responsive">
+                            <tr>
+                                <th>Produkti</th>
+                                <th>Sasia</th>
+                                <th>Kosto (lek)</th>
+                                <th>Fshi</th>
+                            </tr>
+                            @foreach ($supplies as $supply)
+                                <tr>
+                                    <td>{{ $supply->product }}</td>
+                                    <td>{{ $supply->quantity }}</td>
+                                    <td>{{ $supply->waste }}</td>
+                                    <td>
+                                        <form method="POST" action="{{ route('deleteSupply',$supply->id) }}">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <input type="submit" class="btn btn-sm btn-danger" onclick="if(!confirm('Je i sigurt')) return false;">
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div><!-- ./panel-body -->
+                </div><!-- ./panel -->
+            </div><!-- ./col-md-4 -->
         </div><!-- ./row -->
 
     </div>
