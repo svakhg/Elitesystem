@@ -60,6 +60,8 @@ class BarController extends Controller
         $product = new Bar();
         $product->name = $request->input('name');
         $product->price = $request->input('price');
+        $product->init = $request->input('quantity');
+        $product->actual = $request->input('quantity');
         $product->countable = $request->input('countable');
         $product->save();
 
@@ -87,7 +89,7 @@ class BarController extends Controller
 
         $this->validate($request, [
             'name' => 'required|min:3',
-            'qty' => 'required',
+            // 'qty' => 'required',
             'price' => 'required',
             'countable' => 'required'
         ]);
@@ -100,7 +102,7 @@ class BarController extends Controller
         $product->countable = $request->input('countable');
         $product->save();
 
-        return redirect()->route('bar.index')->with('success','Produkti u redaktua');
+        return redirect()->route('inventory.index')->with('success','Produkti u redaktua');
     }
 
     public function destroy($id)

@@ -17,10 +17,12 @@
 			        		<label>Produkti</label>
 			        		<input type="text" name="name" class="form-control" value="{{ $product->name }}">
 			        	</div>
-			        	<div class="form-group">
-			        		<label>Sasia</label>
-			        		<input type="number" name="qty" class="form-control" value="{{ $product->init }}">
-			        	</div>
+						@if($product->countable == 1)
+							<div class="form-group">
+								<label>Sasia</label>
+								<input type="number" name="qty" class="form-control" value="{{ $product->init }}">
+							</div>
+						@endif
 			        	<div class="form-group">
 			        		<label>Cmimi</label>
 			        		<input type="number" name="price" class="form-control" value="{{ $product->price }}">

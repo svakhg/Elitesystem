@@ -20,17 +20,17 @@
                             </tr>
                             @foreach($products as $product)
                                 <tr>
-                                    <th>{{$product->name}}</th>
-                                    <th>{{$product->price}}</th>
-                                    <th>{{$product->actual}}</th>
-                                    <th><a href="{{ route('bar.edit',$product->id) }}" class="btn btn-info btn-sm">Redakto</a></th>
-                                    <th>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->price}}</td>
+                                    <td>{{$product->actual}}</td>
+                                    <td><a href="{{ route('bar.edit',$product->id) }}" class="btn btn-info btn-sm">Redakto</a></td>
+                                    <td>
                                         <form method="POST" action="{{ route('bar.destroy',$product->id) }}">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                             <input type="submit" class="btn btn-danger btn-sm" value="Fshi" onclick="if(!confirm('Je i sigurt ?')) return false;">
                                         </form>
-                                    </th>
+                                    </td>
                                 </tr>
                             @endforeach
                         </table>
@@ -66,6 +66,10 @@
                                             <label>Cmimi</label>
                                             <input type="text" name="price" class="form-control">
                                         </div>
+                                        <div class="form-group">
+                                            <label>Sasia</label>
+                                            <input type="number" name="quantity" class="form-control">
+                                        </div>
                                         <input type="hidden" name="countable" value="1">
                                         <input type="submit" class="btn btn-primary">
                                     </form>
@@ -100,10 +104,13 @@
                     <div class="panel-body">
                         <form method="POST" action="{{ route('addSuply') }}">
                             {{ csrf_field() }}
-                            <div class="form-group">
+                            <div class="form-group">    
                                 <label>Produkti</label>
                                 <select class="form-control" name="product_id">
-                                    <option>-- ZGJID PRODUKTIN --</option>
+                                    <option value="0">-- ZGJID PRODUKTIN --</option>
+                                    @foreach ($countable_products as $product)
+                                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
