@@ -16,7 +16,7 @@ class InventoryController extends Controller
 
     public function index()
     {
-        $products = Bar::all();
+        $products = Bar::paginate(5);
         $countable_products = Bar::where('countable','1')->get();
         $supplies = Supply::all();
 

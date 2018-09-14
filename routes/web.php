@@ -30,6 +30,9 @@ Route::get('/inventory','InventoryController@index')->name('inventory.index');
 Route::post('/addSuply', 'InventoryController@addSuply')->name('addSuply');
 Route::delete('/deleteSupply/{id}','InventoryController@deleteSupply')->name('deleteSupply');
 
+/*** Custom Controller Routes ***/
+Route::put('/updatePhoto/{id}','CustomController@updatePhoto')->name('updatePhoto');
+
 /**** AJAX ROUTES ****/
 Route::post('/getProductPriceById/{id}','AjaxController@getProdouctPriceById');
 Route::post('/getProductQtyById/{id}','AjaxController@getProductQtyById');

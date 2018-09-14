@@ -34,6 +34,7 @@
                                 </tr>
                             @endforeach
                         </table>
+                        <span>{{ $products->links() }}</span>
                     </div>
                 </div><!-- ./panel -->
             </div><!-- ./col-md-4 -->
@@ -129,10 +130,17 @@
         
         </div><!-- ./row -->
 
-        <div class="row">
+        <div class="row"    >
             <div class="col-md-4"></div><!-- ./col-md-4 -->
             <div class="col-md-4">
-                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Peshqirat</strong>
+                    </div>
+                    <div class="panel-body">
+
+                    </div><!-- ./panel-body -->
+                </div><!-- ./panel -->
             </div><!-- ./col-md-4 -->
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -156,7 +164,7 @@
                                         <form method="POST" action="{{ route('deleteSupply',$supply->id) }}">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-                                            <input type="submit" class="btn btn-sm btn-danger" onclick="if(!confirm('Je i sigurt')) return false;">
+                                            <input type="submit" class="btn btn-sm btn-danger" value="Fshi" onclick="if(!confirm('Je i sigurt')) return false;">
                                         </form>
                                     </td>
                                 </tr>

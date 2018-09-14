@@ -9,6 +9,16 @@
 			@else
 				<img class="img img-responsive img-thumbnail avatar-img" src="{{ asset('storage/photos/'.$member->photo) }}">
 			@endif
+
+			<form method="POST" action="{{ route('updatePhoto',$member->id) }}" enctype="multipart/form-data" class="well">
+				{{ csrf_field() }}
+				{{ method_field('PUT') }}
+				<div class="form-group">
+					<label>Update Photo</label>
+					<input type="file" name="photo">
+				</div>
+				<input type="submit" class="btn btn-sm btn-primary" value="Upload">
+			</form>
 		</div>
 		<div class="col-md-9">
 			<div class="well">
@@ -52,7 +62,6 @@
 					    		@endforeach
 					    	</table>
 					    </div>	
-
 
 					    <div role="tabpanel" class="tab-pane" id="unpayed">
 					    	<br>
@@ -151,6 +160,9 @@
 							@endif
 
 						@endif
+
+						<hr>
+						<a href="{{ route('members.edit',$member->id) }}" class="btn btn-sm btn-info">Redakto Profilin</a>
 
 					</div>
 				</div>
