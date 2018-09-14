@@ -30,6 +30,7 @@ class HomeController extends Controller
         $activities = Activity::where('active','1')->get();
         $targets = Target::where('active','1')->get();
         $active_turn = Turn::where('active','1')->first();
+        $month_target = Target::where('active','1')->first();
 
         // foreach($targets as $target)
         // {
@@ -47,7 +48,8 @@ class HomeController extends Controller
             'packages_nr',
             'activities',
             'targets',
-            'active_turn'
+            'active_turn',
+            'month_target'
         ]));
     }
 }

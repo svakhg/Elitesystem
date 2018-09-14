@@ -1,5 +1,6 @@
                 @if(count($targets) > 0)
                     <div class="well text-center">
+                        <h5>TARGET: {{ $month_target->target }}</h5><hr>
                     @foreach($targets as $target)
                         <div class="panel panel-default">
                             <div class="panel-heading">
