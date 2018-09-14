@@ -32,14 +32,6 @@ class HomeController extends Controller
         $active_turn = Turn::where('active','1')->first();
         $month_target = Target::where('active','1')->first();
 
-        // foreach($targets as $target)
-        // {
-        //     $x = (int)$target->target;
-        //     $y = (int)$target->accomplished;
-        //     $p = $y/$x;
-        //     $percentage_accomplished = $p * 100;
-        // }
-
         return view('home', compact([
             'payed_purchases',
             'unpayed_purchases',

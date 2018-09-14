@@ -2,17 +2,17 @@
                     <div class="well text-center">
                         <h5>TARGET: {{ $month_target->target }}</h5><hr>
                     @foreach($targets as $target)
+                        <?php 
+                            $x = (int)$target->target;
+                            $y = (int)$target->accomplished;
+                            $p = $y/$x;
+                            $percentage_accomplished = $p * 100;
+                        ?>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <b><span>{{ $target->user->first_name }}</span></b>
+                                <b><span>{{ $target->user->first_name }} {{ $percentage_accomplished }}%</span></b>
                             </div>
                             <div class="panel-body">
-                                <?php 
-                                    $x = (int)$target->target;
-                                    $y = (int)$target->accomplished;
-                                    $p = $y/$x;
-                                    $percentage_accomplished = $p * 100;
-                                ?>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" aria-valuenow="{{ $percentage_accomplished }}" aria-valuemin="0" aria-valuemax="100" style="width: {{$percentage_accomplished}}%;"></div>
                                 </div>

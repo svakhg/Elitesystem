@@ -11,10 +11,10 @@
                     {{-- Mbyll Turnin --}}
                     @if(auth()->user()->is_recepsion())
                         @if($active_turn)
-                            <strong>Total: {{ $active_turn->total }} (lek)</strong>
-                            <form method="post" action="{{ route('deactivateCurrentTurn') }}" class="pull-right">
+                            {{-- <strong>Total: {{ $active_turn->total }} (lek)</strong> --}}
+                            <form method="post" action="{{ route('deactivateCurrentTurn') }}" class="text-center">
                             {{ csrf_field() }}
-                                <input type="submit" class="btn btn-success btn-sm" value="Mbyll Turnin">
+                                <input type="submit" class="btn btn-success" value="Mbyll Turnin">
                             </form>
                             <hr>
                         @endif
