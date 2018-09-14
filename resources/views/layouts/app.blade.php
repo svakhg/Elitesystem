@@ -14,23 +14,22 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet">
-    <link rel="{{ asset('css/datepicker.min.css') }}" rel="stylesheet">
+    
+    <!-- Easy Autocomplete Styles -->
+    <link href="{{ asset('css/autocomplete.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/autocomplete.themes.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 
-    <!-- Zebra Datepicker -->
-    <script src="{{ asset('js/datepicker.min.js') }}"></script> 
-    
+    <!-- Autocomplete Js -->
+    <script src="{{ asset('js/autocomplete.min.js') }}"></script>
+
     <!-- Sweet Alert -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    
-    <!-- Main Js -->
-    @if(!auth()->guest())
-        <script src="{{ asset('js/main.js') }}"></script>
-    @endif    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  
+
 </head>
 <body>
     <div id="app">
@@ -59,7 +58,7 @@
                                 <form method="POST" class="navbar-form navbar-left" action="{{ route('searchMember') }}">
                                     {{ csrf_field() }}
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="name" placeholder="Kerko Antare">
+                                        <input type="text" class="form-control" name="name" placeholder="Kerko Antare" id="searchMembersInput">
                                     </div>
                                 </form>
                             @endif
@@ -118,6 +117,11 @@
                 </div>
             </div>
         </nav>
+
+        <!-- Main Js -->
+        @if(!auth()->guest())
+            <script src="{{ asset('js/main.js') }}"></script>
+        @endif  
 
         @yield('content')
     </div>

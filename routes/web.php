@@ -45,3 +45,4 @@ Route::post('/checkIn/{id}','AjaxController@checkIn');
 Route::post('/checkOut/{id}','AjaxController@checkOut');
 Route::post('/searchMember','AjaxController@searchMember')->name('searchMember');
 Route::post('/payDebt/{id}','AjaxController@payDebt');
+Route::post('/autosugguest/{name}','AjaxController@autosugguest');

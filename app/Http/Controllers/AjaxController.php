@@ -186,8 +186,11 @@ class AjaxController extends Controller
     public function searchMember(Request $request)
     {
         $name = $request->input('name');
+        $searchPhrase = explode(' ', $name)[0];
 
-        $members = Member::where('first_name','LIKE','%'.$name.'%')->paginate(10);
+        $members = Member::where('first_name','LIKE','%'.$searchPhrase.'%')
+                        ->orWhere('last_name','LIKE','%'.$searchPhrase.'%')
+                        ->paginate(10);
 
         return view('members.search', compact('members'));
     }
@@ -210,6 +213,14 @@ class AjaxController extends Controller
                 $debt->save();
             }
         }
+    }
 
+    public function autosugguest($name) 
+    {
+        $members = Member::where('first_name','LIKE','%'.$name.'%')
+                        ->orWhere('last_name','LIKE','%'.$name.'%')
+                        ->get();
+
+        return $members;
     }
 }
