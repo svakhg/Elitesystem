@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
 use App\Member;
 use App\Purchase;
 use App\Package;
 use App\Activity;
 use App\Target;
 use App\User;
+use App\Subscription;
+use App\Turn;
 
 use DateTime;
 use DateInterval;
@@ -26,8 +29,9 @@ class MemberController extends Controller
     public function index()
     {
         $members = Member::orderBy('created_at','DESC')->paginate(10);
+        $packages = Package::all();
 
-        return view('members.index', compact(['members']));
+        return view('members.index', compact(['members','packages']));
     }
 
     public function store(Request $request)
@@ -36,9 +40,13 @@ class MemberController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'gender' => 'required',
-            'photo' => 'image|max:2999'
+            'photo' => 'image|max:2999',
+            'payment_method' => 'required',
+            'package_id' => 'required',
+            'starts_at' => 'required'
         ]);
-
+        
+        // store photo
         if($request->file('photo'))
         {
             $filenameWithExt = $request->file('photo')->getClientOriginalName();
@@ -56,16 +64,65 @@ class MemberController extends Controller
         $member->gender = $request->input('gender');
         $member->email = $request->input('email');
         $member->phone = $request->input('phone');
-
-        if(isset($filenameToStore)) 
-        {
-            $member->photo = $filenameToStore;
-        }
-        else 
-        {
-            $member->photo = '';
-        }
         $member->save();
+
+        ((isset($filenameToStore))) ? $member->photo = $filenameToStore  : $member->photo = '';
+
+        // shto abonimin
+        $package = Package::find($request->input('package_id'));
+        $subscription = new Subscription();
+
+        $subscription->member_id = $member->id;
+        $subscription->package_id = $request->input('package_id');
+
+        if($request->input('payment_method') == 0) // e plote 
+            $subscription->payed_price = 'payed';
+        else if ($request->input('payment_method') == 1) // me keste
+            $subscription->payed_price = 'installment';
+
+        // starts at datetime object
+        $starts_at = new Datetime($request->input('starts_at'));
+        $starts_at->format('Y-m-d');    
+        $starts_at_object = new ReflectionObject($starts_at);
+        $starts_at_date_property = $starts_at_object->getProperty('date');
+        $starts_at_date = $starts_at_date_property->getValue($starts_at); 
+        // starts at database field 
+        $subscription->starts_at = $starts_at_date;
+
+        $expires_at = new Datetime();
+        
+        if($package->cycle->months == 0) // eshte abonim ditor
+            $expires_at = $starts_at->modify('+1 day');
+        else  // eshte abonim mujor
+            $expires_at = $starts_at->modify('+'.$package->cycle->months.'months');
+        
+        $expires_at->format('Y-m-d');
+        $expires_at_object = new ReflectionObject($expires_at);
+        $expires_at_date_property = $expires_at_object->getProperty('date');
+        $expires_at_date = $expires_at_date_property->getValue($expires_at);        
+        // krijo abonim te ri
+        $subscription->expires_at = $expires_at_date;    
+        $subscription->sessions_left = $package->all_sessions;
+        $subscription->status = '1';
+        $subscription->deleted = '0';
+        $subscription->save();
+        
+        // krijo pagese me keste
+        if($request->input('payment_method') == 1)
+        {
+            $installment = new Installment();
+            $installment->subscription_id = $subscription->id;
+            $installment->price = $subscription->package->price;
+            $installment->payed = 0;
+            $installment->save();
+        } 
+        else if ($request->input('payment_method') == 0) 
+        {
+            // shto ne totali i turnit
+            $turn = Turn::where('active','1')->first();
+            $turn->total = $turn->total + $subscription->package->price;
+            $turn->save();
+        }
 
         // shto ne targeti mujor
         $current_user = auth()->user();

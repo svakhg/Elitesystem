@@ -97,6 +97,48 @@
 							<label>Foto</label>
 							<input type="file" name="photo" class="form-control">
 						</div>
+						<div class="form-group">
+							<label>Abonimi</label>
+							<select name="package_id" class="form-control">
+								<option></option>
+									@foreach($packages as $package)
+										<option value="{{ $package->id }}">
+											{{ $package->service->name }} 
+											{{ $package->cycle->name }} 
+
+											@if($package->time == 1) 
+												Paradite
+											@endif
+
+											@if($package->time == 2)
+												Mbasdite
+											@endif
+											
+											@if($package->time == 3)
+												Paradite \ Mbasdite
+											@endif
+											{{ $package->all_sessions }} (seanca)
+											{{ $package->price }} (lek)
+										</option>
+									@endforeach
+							</select>
+						</div>
+						@if(auth()->user()->is_superuser())
+							<div class="form-group">
+								<label>Pagesa</label> 
+								<select class="form-control" name="payment_method">
+									<option></option>
+									<option value="0">E Plotë</option>
+									<option value="1">Me Këste</option>
+								</select>
+							</div>
+						@else
+							<input type="hidden" name="payment_method" value="0">
+						@endif
+						<div class="form-group">
+							<label>Data e Filleses</label>
+							<input type="date" id="datepicker" name="starts_at" class="form-control">
+						</div>
 						<input type="submit" class="btn btn-primary">
 					</form>
 				</div>

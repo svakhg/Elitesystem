@@ -1,6 +1,6 @@
                 @if(count($targets) > 0)
                     <div class="well text-center">
-                        <h5>TARGET: {{ $month_target->target }}</h5><hr>
+                        <h5 id="targetInfo">TARGET: {{ $month_target->target }}</h5>
                     @foreach($targets as $target)
                         <?php 
                             $x = (int)$target->target;
