@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 use App\Member;
+use App\Towel;
 
 class CustomController extends Controller
 {
@@ -40,6 +41,26 @@ class CustomController extends Controller
             $member->save();
         }
 
-        return back()->with('success',$id);
+        return back()->with('success','Fotoja u ndryshua');
+    }
+
+    public function addTowel(Request $request)
+    {
+        $this->validate($request, ['nr' => 'required']);
+
+        $towelCount = Towel::where('nr',$request->input('nr'))->count();
+
+        if($towelCount == 0) 
+        {
+            $towel = new Towel();
+            $towel->nr = $request->input('nr');
+            $towel->save();
+
+            return back()->with('success','Peshqiri u shtua');
+        }
+        else 
+        {
+            return back()->with('error','Peshqiri me numer '.$request->input('nr').' ekziston');
+        }
     }
 }

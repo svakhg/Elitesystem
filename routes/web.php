@@ -32,6 +32,7 @@ Route::delete('/deleteSupply/{id}','InventoryController@deleteSupply')->name('de
 
 /*** Custom Controller Routes ***/
 Route::put('/updatePhoto/{id}','CustomController@updatePhoto')->name('updatePhoto');
+Route::post('/addTowel','CustomController@addTowel')->name('addTowel');
 
 /**** AJAX ROUTES ****/
 Route::post('/getProductPriceById/{id}','AjaxController@getProdouctPriceById');

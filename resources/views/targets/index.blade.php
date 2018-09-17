@@ -1,6 +1,6 @@
                 @if(count($targets) > 0)
-                    <div class="well text-center">
-                        <h5 id="targetInfo">TARGET: {{ $month_target->target }}</h5>
+                    <div class="well">
+                        <h6 id="targetInfo">TARGET: {{ $month_target->target }}</h6>
                     @foreach($targets as $target)
                         <?php 
                             $x = (int)$target->target;
@@ -16,7 +16,6 @@
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" aria-valuenow="{{ $percentage_accomplished }}" aria-valuemin="0" aria-valuemax="100" style="width: {{$percentage_accomplished}}%;"></div>
                                 </div>
-                                
                             </div>
                         </div>
                         @endforeach

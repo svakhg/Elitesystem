@@ -37,5 +37,6 @@ $('#searchMembersInput').on('keypress', function(){
         };
 
         $(this).easyAutocomplete(options);
+        
     } 
 });

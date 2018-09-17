@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Bar;
 use App\Supply;
+use App\Towel;
 
 class InventoryController extends Controller
 {
@@ -19,11 +20,13 @@ class InventoryController extends Controller
         $products = Bar::paginate(5);
         $countable_products = Bar::where('countable','1')->get();
         $supplies = Supply::all();
+        $towels = Towel::all();
 
         return view('inventory.index', compact([
             'products',
             'countable_products',
-            'supplies'
+            'supplies',
+            'towels'
         ]));
     }
 

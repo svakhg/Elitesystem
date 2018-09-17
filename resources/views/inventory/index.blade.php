@@ -130,15 +130,61 @@
         
         </div><!-- ./row -->
 
-        <div class="row"    >
-            <div class="col-md-4"></div><!-- ./col-md-4 -->
+        <div class="row">
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <strong>Peshqirat</strong>
                     </div>
                     <div class="panel-body">
-
+                        <table class="table table-responsive table-condensed">
+                            <tr>
+                                <th>Nr</th>
+                                <th>Pronari</th>
+                                <th>U Krijua</th>
+                                <th>Aksioni</th>
+                            </tr>
+                            @foreach($towels as $towel)
+                                <tr>
+                                    <td>{{ $towel->nr }}</td>
+                                    <td>
+                                        @if($towel->member === null) 
+                                            <span class="null">NULL</span>
+                                        @else 
+                                            <a href="{{ route('member.show',$towel->member->id) }}">
+                                                {{ ucfirst($towel->member->first_name) }}
+                                                {{ ucfirst($towel->member->last_name) }}
+                                            </a>
+                                        @endif
+                                    </td>
+                                    <td>{{ $towel->created_at }}</td>
+                                    <td>
+                                        @if($towel->active == 1)
+                                            <a class="btn btn-danger btn-sm">Caktivizo</a>
+                                        @else 
+                                            <a class="btn btn-success btn-sm">Aktivizo</a>
+                                        @endif    
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+            </div><!-- ./col-md-4 -->
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Shto Peshqir</strong>
+                    </div>
+                    <div class="panel-body">
+                        <form method="POST" action="{{ route('addTowel') }}">
+                        {{ csrf_field() }}
+                            <div class="form-group">
+                                <label>Nr I Peshqirit</label>
+                                <input type="number" id="towelNumber" name="nr" class="form-control">
+                            </div>
+                            <input type="submit" class="btn btn-primary">
+                        </form>
                     </div><!-- ./panel-body -->
                 </div><!-- ./panel -->
             </div><!-- ./col-md-4 -->

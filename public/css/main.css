@@ -17,6 +17,13 @@ body {
 }
 
 #targetInfo {
-	border-bottom: 1px dashed #444;
-	padding-bottom: 5px; 
+	color: #2196f3;
+	border-bottom: 2px dashed #2196f3;
+	padding-bottom: 0.5em;
+	text-align: center;
+	font-weight: bold;
+}
+
+.null {
+	color: #bebebe;
 }
