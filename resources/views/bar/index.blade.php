@@ -205,43 +205,7 @@
 
 	</div>
 
-	{{-- Shto Prdoukt Modal --}}
-	<div class="modal fade" id="add-product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Shto Produkt</h4>
-	      </div>
-	      <div class="modal-body">
-	        <form method="POST" action="{{ route('bar.store') }}">
-	        	{{ csrf_field() }}
-	        	<div class="form-group">
-	        		<label>Produkti</label>
-	        		<input type="text" name="name" class="form-control">
-	        	</div>
-	        	<div class="form-group">
-	        		<label>Sasia</label>
-	        		<input type="number" name="qty" class="form-control">
-	        	</div>
-	        	<div class="form-group">
-	        		<label>Cmimi</label>
-	        		<input type="number" name="price" class="form-control">
-	        	</div>
-	        	<div class="form-group">
-	        		<label>I Numurueshem ?</label>
-	        		<select name="countable" class="form-control">
-	        			<option></option>
-	        			<option value="1">Po</option>
-	        			<option value="2">Jo</option>
-	        		</select>
-	        	</div>
-	        	<input type="submit" class="btn btn-primary">
-	        </form>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+
 
 	<!-- Bar Js -->
     <script src="{{ asset('js/bar.js') }}"></script>

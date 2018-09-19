@@ -2,6 +2,12 @@ body {
 	background-color: #fafafa;
 }
 
+#logo {
+	height: 40px!important;
+	width: auto;
+	margin-top: -7px;
+}
+
 #activities-panel {
 	min-height: calc(100vh - 20vh);
 	max-height: calc(100vh - 20vh);
@@ -19,7 +25,7 @@ body {
 #targetInfo {
 	color: #2196f3;
 	border-bottom: 2px dashed #2196f3;
-	padding-bottom: 0.5em;
+	padding-bottom: 1em;
 	text-align: center;
 	font-weight: bold;
 }

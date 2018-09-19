@@ -8,6 +8,7 @@ use App\Member;
 use App\User;
 use App\Purchase;
 use App\Turn;
+use App\Towel;
 
 class BarController extends Controller
 {
@@ -40,8 +41,9 @@ class BarController extends Controller
         $members = Member::all();
         $users = User::all();
         $purchases = Purchase::orderBy('created_at','DESC')->take(15)->get();
+        $towel = Towel::where('member_id',null)->where('active','1')->first(); 
 
-        return view('bar.index', compact(['products','products_array','members','users','purchases']));
+        return view('bar.index', compact(['products','products_array','members','users','purchases','towel']));
     }
 
     public function store(Request $request)

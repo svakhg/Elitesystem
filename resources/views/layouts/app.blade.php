@@ -45,7 +45,8 @@
                     </button>
 
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'EliteSystem') }}
+                        {{-- {{ config('app.name', 'EliteSystem') }} --}}
+                        <img src="{{ asset('images/logo.png') }}" id="logo">
                     </a>
                 </div>
 

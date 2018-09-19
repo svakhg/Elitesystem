@@ -151,7 +151,7 @@
                                         @if($towel->member === null) 
                                             <span class="null">NULL</span>
                                         @else 
-                                            <a href="{{ route('member.show',$towel->member->id) }}">
+                                            <a href="{{ route('members.show',$towel->member->id) }}">
                                                 {{ ucfirst($towel->member->first_name) }}
                                                 {{ ucfirst($towel->member->last_name) }}
                                             </a>
@@ -160,7 +160,11 @@
                                     <td>{{ $towel->created_at }}</td>
                                     <td>
                                         @if($towel->active == 1)
-                                            <a class="btn btn-danger btn-sm">Caktivizo</a>
+                                            @if($towel->member === null)
+                                                <a class="btn btn-danger btn-sm">Caktivizo</a>
+                                            @else 
+                                                    <a class="btn btn-danger btn-sm" disabled>Caktivizo</a>
+                                            @endif                                            
                                         @else 
                                             <a class="btn btn-success btn-sm">Aktivizo</a>
                                         @endif    

@@ -138,13 +138,7 @@ class AjaxController extends Controller
 
     public function checkIn($id)
     {
-        $member = Member::find($id);
-        // update -1 nr e seancave
-        $sessions = $member->subscription->sessions_left;
-        $sessions -= 1;
-        $member->subscription->sessions_left = $sessions;
-        $member->subscription->save();
-
+		$member = Member::find($id);
         $activity = Activity::where('member_id',$member->id)->count(); // fix count
         
         if($activity < 1) 
@@ -173,6 +167,12 @@ class AjaxController extends Controller
             }
         }
 
+        // update -1 nr e seancave
+        $sessions = $member->subscription->sessions_left;
+        $sessions -= 1;
+        $member->subscription->sessions_left = $sessions;
+        $member->subscription->save();
+		
         return 1;
     }
 
