@@ -10,6 +10,8 @@ class Bar extends Model
 
     public function purchase()
     {
-    	return $this->hasMany('App\Purchase');
+    	return $this->morphMany('App\Purchase','product');
     }
+
+    
 }

@@ -9,7 +9,7 @@ $(function(){
 
 // Search Members autosugguest 
 $('#searchMembersInput').on('keypress', function(){
-    
+
     var member = $(this).val();
 
     if(member !== '' || member !== null) {

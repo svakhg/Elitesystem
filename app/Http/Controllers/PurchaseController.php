@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use App\Purchase;
 use App\Bar;
 use App\Turn;
+use App\Towel;
 
 class PurchaseController extends Controller
 {
@@ -61,6 +62,16 @@ class PurchaseController extends Controller
         $purchase->buyer_id = $request->input('buyer_id');
         $purchase->buyer_type = $buyer_type;
         $purchase->product_id = $request->input('product_id');
+        if($request->input('product_type')) 
+        {
+            // Modifiko tabelen e peshqirave 
+            $towel = Towel::find($request->input('product_id'));
+            $towel->member_id = $request->input('buyer_id');
+            $towel->active = 0;
+            $towel->save();
+            
+            $purchase->product_type = $request->input('product_type');
+        }
         $purchase->quantity = $request->input('quantity');
         $purchase->price = $request->input('price');
         $purchase->status = $request->input('status');

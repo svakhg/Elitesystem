@@ -15,6 +15,6 @@ class Purchase extends Model
 
     public function product()
     {
-    	return $this->belongsTo('App\Bar');
+    	return $this->morphTo();
     }
 }

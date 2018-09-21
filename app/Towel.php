@@ -12,4 +12,9 @@ class Towel extends Model
     {
         return $this->belongsTo('App\Member');
     }
+
+    public function purchases()
+    {
+        return $this->morhpMany('App\Purchase','product');
+    }
 }

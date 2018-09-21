@@ -62,6 +62,9 @@
 				    <li role="presentation">
 				    	<a href="#staff" aria-controls="staff" role="tab" data-toggle="tab" onclick="resetMemberBuyForm();">Stafi</a>
 				    </li>
+					<li role="presentation">
+						<a href="#towel" aria-controls="towel" role="tab" data-toggle="tab" onclick="resetUserBuyForm();resetMemberBuyForm();">Bli Peshqir</a>
+					</li>
 				  </ul>
 
 				  <div class="tab-content">
@@ -82,15 +85,23 @@
 								</select>
 							</div>
 							<input type="hidden" name="buyer_type" value="member">
-							<div class="form-group">
-								<label>Produkti</label>
-								<select class="form-control" name="product_id" id="member_product" oninput="callGetPriceByIdFunction(this,'member');">
-									<option></option>
-									@foreach($products as $product)
-										<option value="{{ $product->id }}">{{ $product->name }}</option>
-									@endforeach
-								</select>
-							</div>
+							<div class="tab-content">
+				    			<div role="tabpanel" class="tab-pane active" id="produkt">
+									<div class="form-group">
+										<label>Produkti</label>
+										<select class="form-control" name="product_id" id="member_product" oninput="callGetPriceByIdFunction(this,'member');">
+											<option></option>
+											<optgroup label="Produkte">
+												@foreach($products as $product)
+													<option value="{{ $product->id }}">{{ $product->name }}</option>
+												@endforeach
+											</optgroup>
+										</select>
+									</div>
+								</div><!-- ./tab-pane -->
+							</div><!-- ./ tab-content -->
+							
+
 							<div class="form-group">
 								<label>Sasia</label>
 								<input type="number" class="form-control" name="quantity" id="member_quantity" min="1">
@@ -110,6 +121,7 @@
 							<input type="submit" class="btn btn-primary">
 						</form>
 				    </div>
+
 				    <div role="tabpanel" class="tab-pane" id="staff">
 				    	<br>
 				    	<form method="POST" action="{{ route('purchases.store') }}" id="user-buy-form">
@@ -154,6 +166,48 @@
 							<input type="submit" class="btn btn-primary">
 						</form>
 				    </div>
+
+					<div role="tabpanel" class="tab-pane" id="towel">
+						<br>
+							<form method="POST" action="{{ route('purchases.store') }}">
+							{{ csrf_field() }}
+							<div class="form-group">
+									<label>Konsumatori</label>
+									<select class="form-control" name="buyer_id" id="buyer_select">
+										<option></option>
+										@foreach($members as $member)
+											<option value="{{ $member->id }}">
+												{{ ucfirst($member->first_name) }} 
+												{{ ucfirst($member->last_name) }}
+											</option>
+										@endforeach
+									</select>
+								</div>
+							<div class="form-group">
+								<label>Peshqiri nr {{ $towel->nr }}</label>
+								<input type="hidden" name="product_id" class="form-control" value="{{ $towel->id }}">
+							</div>
+
+							<input type="hidden" name="buyer_type" value="member">
+							<input type="hidden" name="quantity" value="1">
+							<input type="hidden" name="product_type" value="App\Towel">
+
+							<div class="form-group">
+								<label>Cmimi</label>
+								<input type="text" readonly class="form-control" name="price" value="{{ $towel->price }}">
+							</div>
+							<div class="form-group">
+								<label>U Pagua ?</label>
+								<select class="form-control" name="status">
+									<option></option>
+									<option value="paguar">Po</option>
+									<option value="papaguar">Jo</option>
+								</select>
+							</div>
+							<input type="submit" class="btn btn-primary">
+						</form>
+					</div>
+
 				  </div>
 
 				</div>
