@@ -124,6 +124,12 @@
 							</select>
 						</div>
 						@if(auth()->user()->is_superuser())
+
+							<div class="form-group">
+								<label>Cmim Custom</label>
+								<input type="number" name="custom_price" class="form-control">
+							</div>
+
 							<div class="form-group">
 								<label>Pagesa</label> 
 								<select class="form-control" name="payment_method">

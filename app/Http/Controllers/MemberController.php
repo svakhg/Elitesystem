@@ -13,6 +13,7 @@ use App\Target;
 use App\User;
 use App\Subscription;
 use App\Turn;
+use App\Installment;
 
 use DateTime;
 use DateInterval;
@@ -80,6 +81,8 @@ class MemberController extends Controller
         else if ($request->input('payment_method') == 1) // me keste
             $subscription->payed_price = 'installment';
 
+        $subscription->custom_price = $request->input('custom_price');    
+
         // starts at datetime object
         $starts_at = new Datetime($request->input('starts_at'));
         $starts_at->format('Y-m-d');    
@@ -112,7 +115,13 @@ class MemberController extends Controller
         {
             $installment = new Installment();
             $installment->subscription_id = $subscription->id;
-            $installment->price = $subscription->package->price;
+            if($request->input('custom_price') !== null){
+                $installment->price = $request->input('custom_price');
+            }
+            else 
+            {
+                $installment->price = $subscription->package->price;
+            }
             $installment->payed = 0;
             $installment->save();
         } 
