@@ -70,4 +70,9 @@ class User extends Authenticatable
             return $this->hasOne('App\Target')->where('active','1');
         }
     }
+
+    public function chat()
+    {
+        return $this->hasMany('App\Chat');
+    }
 }

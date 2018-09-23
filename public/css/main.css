@@ -2,6 +2,10 @@ body {
 	background-color: #fafafa;
 }
 
+li {
+	list-style-type: none;
+}
+
 #logo {
 	height: 40px!important;
 	width: auto;
@@ -32,4 +36,42 @@ body {
 
 .null {
 	color: #bebebe;
+}
+
+#chat {
+	overflow-y: scroll;
+	min-height: 200px;
+	max-height: 300px;
+}
+
+#chat ul li {
+	box-sizing: border-box;
+	width: 100%;
+	border-radius: 2px;
+	margin-bottom: 5px;
+	background-color: #f1f1f1;
+}
+
+#chat ul li.left {
+	border-left: 5px solid #2196f3;
+}
+
+#chat ul li.right {
+	border-right: 2px solid #2196f3;
+}
+
+#chat ul li div.messageContent {
+	padding: 5px 10px;
+}
+ 
+#chat .sentTime {
+	color: #ccc;
+}
+
+#chat strong {
+	padding: 0 5px;
+}
+
+textarea {
+	resize: none!important;
 }

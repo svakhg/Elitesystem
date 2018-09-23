@@ -34,6 +34,10 @@ Route::delete('/deleteSupply/{id}','InventoryController@deleteSupply')->name('de
 Route::put('/updatePhoto/{id}','CustomController@updatePhoto')->name('updatePhoto');
 Route::post('/addTowel','CustomController@addTowel')->name('addTowel');
 
+// chat ajax routes
+Route::post('/addMessage','ChatController@addMessage');
+Route::get('/getMessages','ChatController@getMessages');
+
 /**** AJAX ROUTES ****/
 Route::post('/getProductPriceById/{id}','AjaxController@getProdouctPriceById');
 Route::post('/getProductQtyById/{id}','AjaxController@getProductQtyById');

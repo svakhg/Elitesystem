@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Target;
 
 class UserController extends Controller
 {
@@ -39,6 +40,16 @@ class UserController extends Controller
             $user->permissions = $request->input('permissions');
             $user->password = bcrypt($request->input('password'));
             $user->save();
+
+            $active_target = Target::where('active','1')->first();
+            // create target
+            $new_target = new Target();
+            $new_target->user_id = $user->id;
+            $new_target->target = $active_target->target;
+            $new_target->accomplished = 0;
+            $new_target->active = 1;
+            $new_target->created_at = $active_target->created_at;
+            $new_target->save();
 
             return back()->with('success','Useri u shtua');
         } 
@@ -76,6 +87,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
+
+        $target = Target::where('user_id',$user->id);
+        $target->delete();
 
         return back()->with('success','Useri u fshi');
     }

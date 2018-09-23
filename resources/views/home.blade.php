@@ -54,6 +54,9 @@
             </div><!-- ./col-md-3 -->
 
             <div class="col-md-5">
+                
+                @include('chat.index')
+
                 <div class="panel panel-default" id="activities-panel">
                     <div class="panel-heading">
                         <strong>Aktiviteti</strong>
