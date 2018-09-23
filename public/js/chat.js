@@ -44,3 +44,10 @@ $('#sendMessage').on('click', function(e){
 });
 
 setInterval(renderMessages, 50000);
+
+/**
+ * Toggle Chat Pannel
+ */
+$('#toggleBtn').on('click',function(){
+    $('#chatUi').toggle(100);
+});
