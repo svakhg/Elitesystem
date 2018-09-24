@@ -140,7 +140,7 @@
                         <table class="table table-responsive table-condensed">
                             <tr>
                                 <th>Nr</th>
-                                <th>Pronari</th>
+                                <th>Antari</th>
                                 <th>U Krijua</th>
                                 <th>Aksioni</th>
                             </tr>

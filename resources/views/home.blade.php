@@ -78,6 +78,7 @@
                                 <tr>
                                     <th>Antari</th>
                                     <th>Checked In</th>
+                                    <th>Seanca te mbetura</th>
                                     <th>Profili</th>
                                     <th>Aksioni</th>
                                 </tr>
@@ -88,6 +89,9 @@
                                             {{ $activity->member->last_name }}
                                         </td>
                                         <td>{{ $activity->updated_at->diffForHumans() }}</td>
+                                        <td>
+                                            {{ $activity->member->subscription->sessions_left }}
+                                        </td>
                                         <td>
                                             <a href="{{ route('members.show',$activity->member->id) }}" class="btn btn-sm btn-warning">Shiko</a>
                                         </td>

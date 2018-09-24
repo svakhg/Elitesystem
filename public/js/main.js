@@ -12,7 +12,7 @@ $('#searchMembersInput').on('keypress', function(){
 
     var member = $(this).val();
 
-    if(member !== '' || member !== null) {
+    if(member !== '' && member !== null && typeof member !== undefined) {
 
         var options = {
             url: function(member) {
@@ -33,7 +33,7 @@ $('#searchMembersInput').on('keypress', function(){
                 data.member = member;
                 return data;
             },
-            requestDelay: 200
+            // requestDelay: 200
         };
 
         $(this).easyAutocomplete(options);

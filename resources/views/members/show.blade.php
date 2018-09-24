@@ -117,8 +117,8 @@
 
 						<p>Regjistrimi: {{ $member->created_at->diffForHumans() }}</p>
 	
-						<p>	
-							@if($member->subscription)
+						@if($member->subscription)
+							<p>	
 								Abonimi:
 								{{ $member->subscription->package->service->name }}
 								{{ $member->subscription->package->cycle->name }}
@@ -135,15 +135,15 @@
 								@endif
 
 								{{ $member->subscription->package->all_sessions }} (seanca)
-
 								{{ $member->subscription->package->price }} (lek)
-
-							@endif
-						</p>
+							</p>
+							<p>Data e fillimit: {{ $member->subscription->starts_at }}</p>
+							<p>Data e mbarimit: {{ $member->subscription->expires_at }}</p>
+							<p>Seanca te mbetura: {{ $member->subscription->sessions_left }}</p>
+						@endif
 
 						@if($member->subscription)
 							<p>
-								
 								Pagesa: 
 									@if($member->subscription->payed_price == 'payed')
 										E Plote 

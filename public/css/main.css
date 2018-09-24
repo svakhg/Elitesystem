@@ -13,7 +13,7 @@ li {
 }
 
 #activities-panel {
-	min-height: calc(100vh - 20vh);
+	min-height: 200px;
 	max-height: calc(100vh - 20vh);
 	overflow-y: scroll;
 }
