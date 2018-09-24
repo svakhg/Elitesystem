@@ -237,6 +237,10 @@ class MemberController extends Controller
         {
             if($member->is_debtor()) 
                 return back()->with('error','Nuk mund te fshish nje debitor');
+        } 
+        else 
+        {
+            $member->subscription->delete();
         }
 
         $member->delete();

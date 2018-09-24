@@ -1,9 +1,14 @@
+$(function(){
+    $('#chatUi').hide();
+});
+
 /*
 * GET MESSAGES
 */
 function renderMessages(){
-    $('#messages').html('');
+    $('#messages').empty();
     $.get('/getMessages',{}, function(res){
+        $('#msgCount').text('('+res.length+')');
         var user_id = '<?php auth()->user_id()->id ?>';
         for(var i = 0; i < res.length; i++) {
             $('#messages').append(

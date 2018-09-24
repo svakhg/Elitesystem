@@ -1,7 +1,7 @@
-<div class="panel panel-primary">
+<div class="panel panel-default">
     <div class="panel-heading">
-        <strong>Chat</strong>
-        <button id="toggleBtn" class="btn btn-primary btn-xs pull-right">Toggle</button>
+        <strong>Chat <span id="msgCount"></span></strong>
+        <button id="toggleBtn" class="btn btn-default btn-xs pull-right">Toggle</button>
     </div>
     <div id="chatUi">
         <div class="panel-body" id="chat">
